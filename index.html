@@ -42,9 +42,9 @@
     		let total = parseFloat(1)
     		let itemTabela = ""
 
+    	
 
-
-    		taxa = (parcela * 1.5) / 100
+    		taxa = (parcela * 1.5) / 100 //valor da taxa mensal 1.5
     		resultadoJuros = valor * taxa
     		resultadoParcela = (valor + resultadoJuros)/parcela
     		total = valor + resultadoJuros
@@ -53,9 +53,9 @@
     		total = total.toFixed(2)
     		resultadoJuros = resultadoJuros.toFixed(2)
 
-    		itemLista = `<li class="list-group-item">O valor das parcelas ficaram em <strong>${parcela} x R$${valorParcela.toString().replace(".",",")}</strong></li>
-    		<li class="list-group-item">O valor do juros ficou em <strong>R$${resultadoJuros.toString().replace(".",",")}</strong></li>
-    		<li class="list-group-item">O valor total ficou em <strong>R$${total.toString().replace(".",",")}</strong>`
+    		itemLista = `<li class="list-group-item">O valor das parcelas <strong style="color: red;">${parcela} x R$${valorParcela.toString().replace(".",",")}</strong></li>
+    		<li class="list-group-item">O valor do juros ficou em <strong style="color: red;">R$${resultadoJuros.toString().replace(".",",")}</strong></li>
+    		<li class="list-group-item">O valor para passar na máquina <strong style="color: red;">R$${total.toString().replace(".",",")}</strong>`
 
     		document.getElementById('result').innerHTML = itemLista
     	}
@@ -74,7 +74,7 @@
 
 
 
-    		taxa = (parcela * 1.5) / 100
+    		taxa = (parcela * 1.5) / 100 //valor da taxa mensal 1.5
     		resultadoJuros = valor * taxa
     		resultadoParcela = (valor + resultadoJuros)/parcela
     		
@@ -84,7 +84,7 @@
 
     		valorParcela = resultadoParcela.toFixed(2);// mostrar 2 números apos a virgula
 
-    		itemLista = `<li class="list-group-item">O valor que a loja recebe <strong>R$${valorTotal.toString().replace(".",",")}</strong>`
+    		itemLista = `<li class="list-group-item">O valor que a loja recebe <strong style="color: red;">R$${valorTotal.toString().replace(".",",")}</strong>`
 
     		document.getElementById('result1').innerHTML = itemLista
     	}
@@ -99,15 +99,15 @@
 			<div class="col-1 m-auto mt-5 p-2 shadow" style="width: 400px; border: 0.8px solid black; border-radius: 6px;">
 				<div class="mt-4">
 					<h4>Calculadora de cartão</h4>
-					<h6>Valor a passar</h6>
+					<h6 style="color: red;">Saber quanto a loja recebe</h6>
 				</div>
 					
 
 					<label class="mb-3" for="valorDinheiro1">Digite o valor</label>
-					<input type="number" name="valorDinheiro1" id="valorDinheiro1">
+					<input type="number" name="valorDinheiro1" id="valorDinheiro1" required>
 
 					<label for="parcela1">Quantas parcelas</label>
-					<input type="number" name="parcela1" id="parcela1"><br>
+					<input type="number" name="parcela1" id="parcela1" required><br>
 
 					<button class="btn btn-sm btn-dark mt-4" onclick="resultadoCartaoReceber()">Calcular</button>
 
@@ -140,7 +140,7 @@
 			<div class="col-1 m-auto mt-5 shadow" style="width: 400px; border: 0.8px solid black; border-radius: 6px;">
 				<div class="mt-4 ">
 					<h4>Calculadora de cartão</h4>
-					<h6>Valor a receber</h6>
+					<h6 style="color: red">Valor para o cliente pagar</h6>
 				</div>
 					
 
