@@ -10,8 +10,8 @@
 
     <style type="text/css">
     	body{
-
-    		font-family: "Lucinda Grande", "Lucinda Sans Unicode", Arial, sans-serif;
+    		font-size: 1rem;
+    		font-family: "Lucinda Grande", "Lucinda Sans Unicode", Verdana, sans-serif;
     	}
     </style>
     <script type="text/javascript">
@@ -37,9 +37,9 @@
     		let valor = parseFloat(document.getElementById('valorDinheiro').value)
     		let parcela = parseFloat(document.getElementById('parcela').value)
     	
-    		let resultadoJuros = 1
-    		let resultadoParcela = 1
-    		let total = 1
+    		let resultadoJuros = parseFloat(1)
+    		let resultadoParcela = parseFloat(1)
+    		let total = parseFloat(1)
     		let itemTabela = ""
 
 
@@ -48,13 +48,45 @@
     		resultadoJuros = valor * taxa
     		resultadoParcela = (valor + resultadoJuros)/parcela
     		total = valor + resultadoJuros
-    		valorParcela = resultadoParcela.toFixed(2);
+
+    		valorParcela = resultadoParcela.toFixed(2)// mostrar 2 números apos a virgula
+    		total = total.toFixed(2)
+    		resultadoJuros = resultadoJuros.toFixed(2)
 
     		itemLista = `<li class="list-group-item">O valor das parcelas ficaram em <strong>${parcela} x R$${valorParcela.toString().replace(".",",")}</strong></li>
-    		<li class="list-group-item">O valor do juros ficou em <strong>R$${resultadoJuros},00</strong></li>
-    		<li class="list-group-item">O valor total ficou em <strong>R$${total},00</strong>`
+    		<li class="list-group-item">O valor do juros ficou em <strong>R$${resultadoJuros.toString().replace(".",",")}</strong></li>
+    		<li class="list-group-item">O valor total ficou em <strong>R$${total.toString().replace(".",",")}</strong>`
 
     		document.getElementById('result').innerHTML = itemLista
+    	}
+
+    	function resultadoCartaoReceber() {
+
+    		 
+    		let taxa = 1
+    		let total = parseFloat(document.getElementById('valorDinheiro1').value)
+    		let parcela = parseFloat(document.getElementById('parcela1').value)
+    	
+    		let resultadoJuros = 1
+    		let resultadoParcela = 1
+    		let valor = 0
+    		let itemTabela = ""
+
+
+
+    		taxa = (parcela * 1.5) / 100
+    		resultadoJuros = valor * taxa
+    		resultadoParcela = (valor + resultadoJuros)/parcela
+    		
+    		valor = total / ( 1 + taxa )
+
+    		valorTotal = valor.toFixed(2)
+
+    		valorParcela = resultadoParcela.toFixed(2);// mostrar 2 números apos a virgula
+
+    		itemLista = `<li class="list-group-item">O valor que a loja recebe <strong>R$${valorTotal.toString().replace(".",",")}</strong>`
+
+    		document.getElementById('result1').innerHTML = itemLista
     	}
     </script>
 
@@ -64,6 +96,28 @@
 
 	<div class="container">
 		<div class="row text-center">
+			<div class="col-1 m-auto mt-5 p-2 shadow" style="width: 400px; border: 0.8px solid black; border-radius: 6px;">
+				<div class="mt-4">
+					<h4>Calculadora de cartão</h4>
+					<h6>Valor a passar</h6>
+				</div>
+					
+
+					<label class="mb-3" for="valorDinheiro1">Digite o valor</label>
+					<input type="number" name="valorDinheiro1" id="valorDinheiro1">
+
+					<label for="parcela1">Quantas parcelas</label>
+					<input type="number" name="parcela1" id="parcela1"><br>
+
+					<button class="btn btn-sm btn-dark mt-4" onclick="resultadoCartaoReceber()">Calcular</button>
+
+					<ul class="list-group list-group-flush text-center mt-2" id="result1">
+					    <li class="list-group-item"></li>
+					</ul>
+
+
+			</div>
+
 			<!--<div class="col-1 mt-3" style="width: 300px; border: 1px solid black; border-radius: 6px;">
 				<div><h3>Tabuada</h3></div>
 				<div >
@@ -82,12 +136,16 @@
 				  </ul>
 				</div>
 			</div>-->
+			
 			<div class="col-1 m-auto mt-5 shadow" style="width: 400px; border: 0.8px solid black; border-radius: 6px;">
-				<div class="mt-4"><h4>Calculadora de cartão</h4></div>
+				<div class="mt-4 ">
+					<h4>Calculadora de cartão</h4>
+					<h6>Valor a receber</h6>
+				</div>
 					
 
 					<label class="mb-3" for="valorDinheiro">Digite o valor</label>
-					<input type="number" name="valorDinheiro" id="valorDinheiro"><br>
+					<input type="number" name="valorDinheiro" id="valorDinheiro">
 
 					<label for="parcela">Quantas parcelas</label>
 					<input type="number" name="parcela" id="parcela"><br>
@@ -100,6 +158,8 @@
 
 
 			</div>
+			
+
 		</div>
 	</div>
 </body>
